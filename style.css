@@ -363,44 +363,76 @@ button:hover {
     }
 
     /* Show hamburger menu, hide regular nav */
-    .menu-toggle {
-        display: flex; /* Show the hamburger */
+  .menu-toggle {
+        display: flex;
+        /* Make the menu toggle slightly larger and more clickable */
+        width: 35px; /* Slightly wider */
+        height: 30px; /* Slightly taller */
+        position: relative; /* Needed for positioning the X properly */
+        z-index: 1002; /* Higher than menu itself, to ensure clickability */
     }
+
+     .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(13.5px) rotate(45deg); /* Adjusted translateY for new height */
+        background-color: var(--light-text-color); /* Make X white */
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-13.5px) rotate(-45deg); /* Adjusted translateY for new height */
+        background-color: var(--light-text-color); /* Make X white */
+    }
+
 
     .main-nav {
         position: fixed;
-        top: 0; /* Align with header */
-        right: -75%; /* Start off-screen, width 75% */
-        width: 75%; /* Width of the menu */
-        height: 100vh; /* Full viewport height */
-        background-color: var(--header-bg-color); /* Same as header */
-        padding-top: 80px; /* Space for site title above menu items */
-        box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
-        transition: right 0.3s ease-in-out; /* Slide in effect */
-        z-index: 999; /* Below toggle, above content */
-        display: flex; /* Flex container for menu items */
-        flex-direction: column; /* Stack menu items vertically */
-        align-items: center; /* Center menu items */
+        top: 0;
+        right: -80%; /* Start off-screen, a bit wider */
+        width: 80%; /* Width of the menu, adjusted for better feel */
+        height: 100vh;
+        background-color: var(--primary-brown); /* Use a slightly lighter brown for the menu background */
+        padding-top: 100px; /* More space at the top to accommodate the header */
+        box-shadow: -6px 0 15px rgba(0, 0, 0, 0.4); /* Stronger shadow for depth */
+        transition: right 0.3s ease-in-out;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto; /* Enable scrolling if menu content is too long */
+        box-sizing: border-box; /* Include padding in width/height */
     }
 
     .main-nav.active {
         right: 0; /* Slide in */
     }
 
-    .main-nav ul {
-        flex-direction: column; /* Stack nav items vertically */
-        gap: 25px; /* More space for stacked items */
-        width: 100%; /* Take full width of the menu container */
-        align-items: center; /* Center items in the column */
-        padding: 0; /* Remove default list padding */
+.main-nav ul {
+        flex-direction: column;
+        gap: 25px; /* Space between menu items */
+        width: 100%;
+        align-items: center;
+        padding: 0;
+        margin: 0; /* Ensure no default list margins */
     }
 
     .nav-button-link {
-        width: 90%; /* Make buttons wider in mobile menu */
+        width: 80%; /* Buttons slightly narrower to allow padding */
         text-align: center;
-        font-size: 1.2em; /* Larger font for mobile buttons */
-        padding: 12px 0;
+        font-size: 1.2em;
+        padding: 15px 10px; /* Increased vertical padding for better tap target */
+        background-color: var(--accent-brown); /* Use a more distinct brown for buttons */
+        color: var(--light-text-color); /* Keep text color light for contrast */
+        border-radius: 8px; /* Slightly more rounded */
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
     }
+
+    .nav-button-link:hover {
+        background-color: var(--button-hover-brown); /* Darker on hover */
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
 
     .container {
         padding: 20px;
@@ -483,8 +515,15 @@ button:hover {
         font-size: 1.6em;
     }
 
-    .nav-button-link {
+        .main-nav {
+        width: 90%; /* Wider menu for smaller phones */
+        right: -90%; /* Match the width */
+        padding-top: 80px; /* Adjust top padding for very small screens */
+    }
+
+   .nav-button-link {
         font-size: 1.1em;
+        padding: 12px 8px; /* Slightly smaller padding for very small screens */
     }
 
     .container {
