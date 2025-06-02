@@ -1,3 +1,22 @@
+/* Universal Resets and Base Styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Ensure both html and body take full width */
+    overflow-x: hidden; /* Prevent horizontal scroll due to potential overflow */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-brown);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+}
+
+/* Color Variables */
 :root {
     --primary-brown: #6D4C41; /* Darker brown for main elements */
     --light-brown: #BCAAA4;  /* Lighter brown for backgrounds */
@@ -12,23 +31,12 @@
     --nav-link-hover: #4E342E; /* Darker hover for nav links */
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--light-brown);
-    color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 /* --- Header Styling --- */
 .main-header {
     background-color: var(--header-bg-color);
     color: var(--header-text-color);
-    padding: 15px 30px;
+    padding: 15px 30px; /* Default padding for desktop */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 100%;
     box-sizing: border-box;
@@ -41,9 +49,11 @@ body {
     display: flex;
     justify-content: space-between; /* Space out title and nav/toggle */
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1200px; /* Max width for desktop content */
+    margin: 0 auto; /* Center content on large screens */
     flex-wrap: wrap; /* Allow wrapping on small screens */
+    width: 100%; /* Ensure header-content itself takes full available width within its parent */
+    box-sizing: border-box;
 }
 
 .site-title {
@@ -82,6 +92,7 @@ body {
     font-size: 1em;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap; /* Prevent text wrapping inside buttons */
 }
 
 .nav-button-link:hover {
@@ -92,7 +103,7 @@ body {
 
 /* Hamburger Menu Icon (Hidden on Desktop) */
 .menu-toggle {
-    display: none; /* Hidden by default */
+    display: none; /* Hidden by default on desktop */
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
@@ -127,14 +138,15 @@ body {
     border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
-    max-width: 700px;
-    width: 100%;
-    margin: 40px auto;
-    flex-grow: 1;
+    max-width: 700px; /* Desktop max width */
+    width: calc(100% - 60px); /* Adjust for 30px padding on each side */
+    margin: 40px auto; /* Center with vertical margin */
+    flex-grow: 1; /* Allows container to take available vertical space */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box; /* Include padding in total width/height */
 }
 
 /* Specific styling for new content pages */
@@ -331,16 +343,19 @@ button:hover {
 }
 
 
-/* Mobile responsiveness (adjust breakpoint if needed) */
+/* --- Mobile Responsiveness --- */
 @media (max-width: 768px) {
     .main-header {
-        padding: 10px 15px;
+        padding: 10px 15px; /* Reduced padding for header on smaller screens */
     }
 
     .header-content {
         flex-direction: row; /* Keep title and toggle side-by-side */
         justify-content: space-between; /* Push title left, toggle right */
         align-items: center;
+        max-width: none; /* Allow header content to span full width */
+        padding: 0; /* Remove any internal padding that might create gaps */
+        margin: 0; /* Ensure no external margin */
     }
 
     .site-title {
@@ -355,8 +370,8 @@ button:hover {
     .main-nav {
         position: fixed;
         top: 0; /* Align with header */
-        right: -100%; /* Start off-screen */
-        width: 70%; /* Width of the menu */
+        right: -75%; /* Start off-screen, width 75% */
+        width: 75%; /* Width of the menu */
         height: 100vh; /* Full viewport height */
         background-color: var(--header-bg-color); /* Same as header */
         padding-top: 80px; /* Space for site title above menu items */
@@ -381,7 +396,7 @@ button:hover {
     }
 
     .nav-button-link {
-        width: 80%; /* Make buttons wider in mobile menu */
+        width: 90%; /* Make buttons wider in mobile menu */
         text-align: center;
         font-size: 1.2em; /* Larger font for mobile buttons */
         padding: 12px 0;
@@ -390,7 +405,9 @@ button:hover {
     .container {
         padding: 20px;
         border-radius: 8px;
-        margin: 20px auto;
+        margin: 20px auto; /* Keep some margin for overall container */
+        width: calc(100% - 40px); /* Account for 20px padding on each side */
+        max-width: none; /* Remove desktop max-width */
     }
 
     .content-page {
@@ -419,7 +436,7 @@ button:hover {
         font-size: 1em;
         padding: 10px 15px;
         width: 100%;
-        max-width: none;
+        max-width: none; /* Allow full width */
     }
 
     .options-container {
@@ -459,7 +476,7 @@ button:hover {
 
 @media (max-width: 480px) {
     .main-header {
-        padding: 10px 10px;
+        padding: 10px; /* Even less padding for very small screens */
     }
 
     .site-title {
@@ -470,13 +487,10 @@ button:hover {
         font-size: 1.1em;
     }
 
-    body {
-        padding: 0;
-    }
-
     .container {
         padding: 15px;
         margin: 15px auto;
+        width: calc(100% - 30px); /* Account for 15px padding on each side */
     }
 
     .content-page {
