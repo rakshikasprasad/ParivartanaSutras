@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sutra Detail</title>
+    <link rel="stylesheet" href="style.css">
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YOUR_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-YOUR_MEASUREMENT_ID'); // Replace G-YOUR_MEASUREMENT_ID with your actual ID
+    </script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="site-title"><a href="index.html">Parivartana Sutras</a></h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="about_guruji.html">About Seshan Guruji</a></li>
+                    <li><a href="foreword.html">Guruji’s Foreword</a></li>
+                    <li><a href="afterword.html">Guruji’s Afterword</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 id="sutra-name"></h1>
+        <p id="sutra-short-description"></p>
+        <p id="sutra-long-description"></p>
+        <div class="timer-container">
+            Time remaining: <span id="timer">60</span> seconds
+        </div>
+        <div class="navigation-buttons">
+            <button id="previous-sutra" class="nav-button">Previous Sutra</button>
+            <button id="next-sutra" class="nav-button">Next Sutra</button>
+        </div>
+        <button id="back-to-home-detail" class="back-button">Back to Home</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
